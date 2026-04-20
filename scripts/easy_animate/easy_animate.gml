@@ -4,6 +4,8 @@
 #macro	__INSTANCE_ANIMATABLE_VARS_NAME		"__animatable_vars"
 // Макрос на случай, если необходимо добавить метод к концу анимации
 #macro	ANIM_END							-1
+// Использовать ли delta_time при рассчёте следующего значения
+#macro  __ANIM_WITH_DELTATIME				false 
 
 // Тип анимации
 enum E_ANIM {
@@ -445,70 +447,81 @@ function AnimTs(_id, _varsStringToAnimate) constructor
 	///@ignore
 	__animate = function()
 	{
-		if (var_state == 0) then exit;
-		if (!__met_is_inst_exists()) then exit;
-			
-		if (array_length(var_names_to_anim) < 1)
-		{
-			show_error("easy_animate : __animate -> Не заданы переменные для анимации в экземпляре конструктора. Воспользуйтесь методом met_vars_add для их добавления", true)
-		}
-			
-		var _targetValue	= var_values_array[var_state-1]
-		var _value
-		var _curveValue
-			
-		if (is_undefined(var_curve_percent_speed))
-		{
-			switch (var_anim_type)
-			{
-				case E_ANIM.FRAMES:
-					var_curve_percent_speed = 1/var_period*array_length(var_values_array)
-				break;
-					
-				case E_ANIM.FRAMES_OVERALL:
-					var_curve_percent_speed = 1/var_period
-				break;
-					
-				case E_ANIM.TIME:
-					var_curve_percent_speed = 1/(var_period*game_get_speed(gamespeed_fps))*array_length(var_values_array)
-				break;
-					
-				case E_ANIM.TIME_OVERALL:
-					var_curve_percent_speed = 1/(var_period*game_get_speed(gamespeed_fps))
-				break;
-			}
-		}
-		
-		var_curve_percent += var_curve_percent_speed
-		
-		
-		
-		_curveValue = __met_get_value_from_animCurve(var_curve_percent, var_target_anim_curve)
-		
-		var _path = path_add()
-		path_set_closed(_path, false)
-		path_add_point(_path, var_start_value, 1, 0)
-		for (var i=0; i<array_length(var_values_array); i++)
-		{
-			path_add_point(_path, var_values_array[i], i+2, 0)
-		}
-		
-		_value = path_get_x(_path, _curveValue)
-		__met_set_vars_to_inst(_value)
-		
-		if (var_state > 0)
-		{
-			__met_set_timer()
-		}
-		
-		
-		var _newState = floor(path_get_y(_path, _curveValue))
-		if (_newState > var_state)
-		{
-			__met_next_state(var_values_array)
-		}
-		
-		path_delete(_path)
+	    if (var_state == 0) then exit;
+	    if (!__met_is_inst_exists()) then exit;
+	        
+	    if (array_length(var_names_to_anim) < 1)
+	    {
+	        show_error("easy_animate : __animate -> Не заданы переменные для анимации в экземпляре конструктора. Воспользуйтесь методом met_vars_add для их добавления", true)
+	    }
+	        
+	    var _targetValue    = var_values_array[var_state-1]
+	    var _value
+	    var _curveValue
+	        
+	    if (is_undefined(var_curve_percent_speed))
+	    {
+	        switch (var_anim_type)
+	        {
+	            case E_ANIM.FRAMES:
+	                var_curve_percent_speed = 1/var_period*array_length(var_values_array)
+	            break;
+	                
+	            case E_ANIM.FRAMES_OVERALL:
+	                var_curve_percent_speed = 1/var_period
+	            break;
+	                
+	            case E_ANIM.TIME:
+	                var_curve_percent_speed = 1/(var_period*game_get_speed(gamespeed_fps))*array_length(var_values_array)
+	            break;
+	                
+	            case E_ANIM.TIME_OVERALL:
+	                var_curve_percent_speed = 1/(var_period*game_get_speed(gamespeed_fps))
+	            break;
+	        }
+	    }
+	    
+	    
+	    var _deltatimeMultiplier = (__ANIM_WITH_DELTATIME ?
+	        (delta_time / game_get_speed(gamespeed_microseconds)) :
+	         1)
+	    var_curve_percent += 
+	        var_curve_percent_speed*_deltatimeMultiplier
+	    
+	    
+	    _curveValue = __met_get_value_from_animCurve(var_curve_percent, var_target_anim_curve)
+	    
+	    // Ограничиваем curveValue диапазоном текущего состояния
+	    // чтобы кривая не влияла на определение перехода между состояниями
+	    var _curveMin = var_state - 1
+	    var _curveMax = var_state
+	    _curveValue = max(_curveMin, min(_curveMax, _curveValue))
+	    
+	    var _path = path_add()
+	    path_set_closed(_path, false)
+	    path_add_point(_path, var_start_value, 1, 0)
+	    for (var i=0; i<array_length(var_values_array); i++)
+	    {
+	        path_add_point(_path, var_values_array[i], i+2, 0)
+	    }
+	    
+	    _value = path_get_x(_path, _curveValue)
+	    __met_set_vars_to_inst(_value)
+	    
+	    if (var_state > 0)
+	    {
+	        __met_set_timer()
+	    }
+	    
+	    // Переходим к следующему состоянию ТОЛЬКО когда var_curve_percent >= 1
+	    // Игнорируем значения кривой для определения перехода!
+	    if (var_curve_percent >= 1)
+	    {
+	        __met_next_state(var_values_array)
+	        var_curve_percent = 0  // Сбрасываем для следующего состояния
+	    }
+	    
+	    path_delete(_path)
 	}
 		
 		
@@ -516,7 +529,6 @@ function AnimTs(_id, _varsStringToAnimate) constructor
 	
 	
 	#endregion Методы
-	
 	
 	
 	// Добавление переданных в экземпляр конструктора значений

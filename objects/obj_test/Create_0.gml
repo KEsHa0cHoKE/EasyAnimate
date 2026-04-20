@@ -1,13 +1,16 @@
-animTs_move_x = new AnimTs(id, nameof(x))
-animTs_move_x.met_control_start(E_ANIM.TIME_OVERALL, [100, room_width-100], 1, ANIM_CURVE_EASE)
-animTs_move_x.met_callback_set(0, function(){
-	animTs_move_y.met_control_start(E_ANIM.TIME_OVERALL, [room_height/2-100, room_height/2+100], 1, ANIM_CURVE_EASE)
-}, true)
-animTs_move_x.met_callback_set(ANIM_END, function(){
-	animTs_move_x.met_control_start()
-})
+//animTs_move_x = new AnimTs(id, nameof(x))
+//animTs_move_x.met_control_start(E_ANIM.TIME_OVERALL, [100, room_width-100], 10, ANIM_CURVE_LINEAR)
+//animTs_move_x.met_callback_set(0, function(){
+	//animTs_move_y.met_control_start(E_ANIM.TIME_OVERALL, [room_height/2-100, room_height/2+100], 10, ANIM_CURVE_LINEAR)
+//}, true)
+//animTs_move_x.met_callback_set(ANIM_END, function(){
+	//animTs_move_x.met_control_start()
+//})
 
 animTs_move_y = new AnimTs(id, nameof(y))
+animTs_move_y.met_control_start(E_ANIM.TIME_OVERALL,
+	[room_height/2-100], 1, ANIM_CURVE_BOUNCE)
+
 animTs_move_y.met_callback_set(ANIM_END, function(){
 	animTs_move_y.met_control_start()
 })
