@@ -8,8 +8,8 @@
 //})
 
 animTs_move_y = new Anim(id, nameof(y)).onComplete(function () {
-	animTs_move_y.start(room_height/2+200, 1, ANIM_CURVE_BOUNCE)
-}).start(room_height/2-200, 1, ANIM_CURVE_BOUNCE)
+	animTs_move_y.start(room_height/2+200, 1, ANIM_CURVE_ELASTIC)
+}).start(room_height/2-200, 1, ANIM_CURVE_ELASTIC)
 
 //#region Struct AnimTs
 

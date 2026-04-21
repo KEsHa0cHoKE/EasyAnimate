@@ -1,7 +1,6 @@
 // by KEsHa_cHoKE
 // Простая анимация на time_source с поддержкой кривых и экстраполяции
 
-#macro __ANIM_VARS_TAG "__animatable_vars"
 #macro __ANIM_USE_DELTA false
 
 enum ANIM_UNITS {
@@ -170,12 +169,12 @@ function Anim(target, vars) constructor
     _registerVars = function()
     {
         if (!_isTargetValid()) exit
-        var arr = is_struct(private.target) ? private.target[$ __ANIM_VARS_TAG] : variable_instance_get(private.target, __ANIM_VARS_TAG)
+        var arr = is_struct(private.target) ? private.target[$ __INSTANCE_ANIMATABLE_VARS_NAME] : variable_instance_get(private.target, __INSTANCE_ANIMATABLE_VARS_NAME)
         if (arr == undefined)
         {
             arr = []
-            if (is_struct(private.target)) private.target[$ __ANIM_VARS_TAG] = arr
-            else variable_instance_set(private.target, __ANIM_VARS_TAG, arr)
+            if (is_struct(private.target)) private.target[$ __INSTANCE_ANIMATABLE_VARS_NAME] = arr
+            else variable_instance_set(private.target, __INSTANCE_ANIMATABLE_VARS_NAME, arr)
         }
         
         for (var i = 0; i < array_length(private.varNames); i++)
@@ -189,7 +188,7 @@ function Anim(target, vars) constructor
     _unregisterVars = function()
     {
         if (!_isTargetValid()) exit
-        var arr = is_struct(private.target) ? private.target[$ __ANIM_VARS_TAG] : variable_instance_get(private.target, __ANIM_VARS_TAG)
+        var arr = is_struct(private.target) ? private.target[$ __INSTANCE_ANIMATABLE_VARS_NAME] : variable_instance_get(private.target, __INSTANCE_ANIMATABLE_VARS_NAME)
         if (arr == undefined) exit
         
         for (var i = array_length(private.varNames) - 1; i >= 0; i--)
@@ -267,15 +266,15 @@ function Anim(target, vars) constructor
 
 
 
-///@desc Проверить, анимируется ли переменная у объекта
-///@param {Id.Instance|Struct} obj Объект для проверки
-///@param {String} varName Имя переменной
-///@return {Bool} true если переменная сейчас анимируется
-function anim_variable_is_animating(obj, varName)
-{
-    if (!is_struct(obj) && !variable_instance_exists(obj, __ANIM_VARS_TAG)) return false
-    if (is_struct(obj) && !struct_exists(obj, __ANIM_VARS_TAG)) return false
-    
-    var arr = is_struct(obj) ? obj[$ __ANIM_VARS_TAG] : variable_instance_get(obj, __ANIM_VARS_TAG)
-    return array_contains(arr, varName)
-}
+/////@desc Проверить, анимируется ли переменная у объекта
+/////@param {Id.Instance|Struct} obj Объект для проверки
+/////@param {String} varName Имя переменной
+/////@return {Bool} true если переменная сейчас анимируется
+//function anim_variable_is_animating(obj, varName)
+//{
+    //if (!is_struct(obj) && !variable_instance_exists(obj, __INSTANCE_ANIMATABLE_VARS_NAME)) return false
+    //if (is_struct(obj) && !struct_exists(obj, __INSTANCE_ANIMATABLE_VARS_NAME)) return false
+    //
+    //var arr = is_struct(obj) ? obj[$ __INSTANCE_ANIMATABLE_VARS_NAME] : variable_instance_get(obj, __INSTANCE_ANIMATABLE_VARS_NAME)
+    //return array_contains(arr, varName)
+//}
