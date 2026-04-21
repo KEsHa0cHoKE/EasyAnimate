@@ -3,9 +3,8 @@
   "%Name":"ANIM_CURVE_BACK",
   "channels":[
     {"$GMAnimCurveChannel":"","%Name":"channel","colour":4290799884,"name":"channel","points":[
-        {"th0":-0.25,"th1":0.10704136,"tv0":0.0,"tv1":0.6750104,"x":0.0,"y":0.0,},
-        {"th0":-0.1743294,"th1":0.22624302,"tv0":-0.09727383,"tv1":0.12661433,"x":0.4389313,"y":1.5473487,},
-        {"th0":-0.09078634,"th1":0.25,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+        {"th0":-0.25,"th1":0.24595869,"tv0":0.0,"tv1":1.5510328,"x":0.0,"y":0.0,},
+        {"th0":-0.1607408,"th1":0.25,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
   ],
   "function":2,

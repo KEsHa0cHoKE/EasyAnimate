@@ -7,14 +7,9 @@
 	//animTs_move_x.met_control_start()
 //})
 
-animTs_move_y = new AnimTs(id, nameof(y))
-animTs_move_y.met_control_start(E_ANIM.TIME_OVERALL,
-	[room_height/2-100], 1, ANIM_CURVE_BOUNCE)
-
-animTs_move_y.met_callback_set(ANIM_END, function(){
-	animTs_move_y.met_control_start()
-})
-
+animTs_move_y = new Anim(id, nameof(y)).onComplete(function () {
+	animTs_move_y.start(room_height/2+200, 1, ANIM_CURVE_BOUNCE)
+}).start(room_height/2-200, 1, ANIM_CURVE_BOUNCE)
 
 //#region Struct AnimTs
 
