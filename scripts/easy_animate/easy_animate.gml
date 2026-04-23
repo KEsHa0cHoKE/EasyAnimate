@@ -29,7 +29,7 @@ function Anim(target, vars) constructor
         endVal: 0,
         duration: 1,
         units: ANIM_UNITS.SECONDS,
-        curve: ANIM_CURVE_LINEAR,
+        curve: AC_LINEAR,
         speed: undefined,
         
         // Path-режим (анимация по ключевым точкам)
@@ -54,9 +54,10 @@ function Anim(target, vars) constructor
     ///@param {Asset.GMAnimCurve} curve Кривая анимации (по умолчанию линейная)
     ///@param {Constant.ANIM_UNITS} units Единицы времени (по умолчанию SECONDS)
     ///@param {Bool} perKeyframe Если true и включён path-режим: duration применяется к каждому сегменту отдельно
-    start = function(endValue, duration, curve = ANIM_CURVE_LINEAR, units = ANIM_UNITS.SECONDS, perKeyframe = false)
+    start = function(endValue, duration, curve = AC_LINEAR, units = ANIM_UNITS.SECONDS, perKeyframe = false)
     {
-        if (!_isTargetValid()) exit
+		// Ранний выход, если таргет невалиден или переменные не заданы
+		if (!_isTargetValid() || array_length(private.varNames) == 0) exit
         
         // Определяем режим по типу endValue
         private.isPathMode = is_array(endValue) && array_length(endValue) > 1
@@ -73,7 +74,7 @@ function Anim(target, vars) constructor
         
         private.duration = duration
         private.units = units
-        private.curve = curve != undefined ? curve : ANIM_CURVE_LINEAR
+        private.curve = curve != undefined ? curve : AC_LINEAR
         private.startVal = _getTargetVarValue()
         
         if (private.isPathMode)
@@ -217,22 +218,24 @@ function Anim(target, vars) constructor
     _isTargetValid = function() { return instance_exists(private.target) || is_struct(private.target) }
     
     /// @ignore
-    _getTargetVarValue = function()
-    {
-        if (!_isTargetValid()) return 0
-        return is_struct(private.target) ? private.target[$ private.varNames[0]] : variable_instance_get(private.target, private.varNames[0])
-    }
+	_getTargetVarValue = function()
+	{
+	    // Безопасно: возвращаем 0, если переменные не заданы
+	    if (!_isTargetValid() || array_length(private.varNames) == 0) return 0
+	    return is_struct(private.target) ? private.target[$ private.varNames[0]] : variable_instance_get(private.target, private.varNames[0])
+	}
     
     /// @ignore
-    _setTargetVarValue = function(val)
-    {
-        if (!_isTargetValid()) exit
-        for (var i = 0; i < array_length(private.varNames); i++)
-        {
-            if (is_struct(private.target)) private.target[$ private.varNames[i]] = val
-            else variable_instance_set(private.target, private.varNames[i], val)
-        }
-    }
+	_setTargetVarValue = function(val)
+	{
+	    // Безопасно: выходим, если нечего анимировать
+	    if (!_isTargetValid() || array_length(private.varNames) == 0) exit
+	    for (var i = 0; i < array_length(private.varNames); i++)
+	    {
+	        if (is_struct(private.target)) private.target[$ private.varNames[i]] = val
+	        else variable_instance_set(private.target, private.varNames[i], val)
+	    }
+	}
     
     /// @ignore
     _registerVars = function()

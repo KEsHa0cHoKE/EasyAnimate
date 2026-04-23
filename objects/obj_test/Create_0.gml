@@ -1,41 +1,50 @@
-#region Перечисления доступных кривых для возможности переключения
-
 curves = [
-	ANIM_CURVE_LINEAR,
-	ANIM_CURVE_CIRC,
-	ANIM_CURVE_CUBIC,
-	ANIM_CURVE_BACK,
-	ANIM_CURVE_EASE,
-	ANIM_CURVE_ELASTIC,
-	ANIM_CURVE_EXPO,
-	ANIM_CURVE_BOUNCE,
-	ANIM_CURVE_FAST_TO_SLOW,
-	ANIM_CURVE_MID_SLOW,
-	ANIM_CURVE_QUART,
+	AC_LINEAR,
+	AC_CIRC,
+	AC_CUBIC,
+	AC_BACK,
+	AC_EASE,
+	AC_ELASTIC,
+	AC_EXPO,
+	AC_BOUNCE,
+	AC_FAST_TO_SLOW,
+	AC_MID_SLOW,
+	AC_QUART,
 ]
 target_curve = 0
 
-#endregion
 
+#region Object Anim
 
 // Пример анимации в несколько кейфреймов, 
 // курвы где значение выходит за пределы между 0 и 1 не применят значения вне диапазона
 // для анимируемой переменной
-animY = new Anim(self, nameof(y)).onComplete(function () {
+
+animY = new Anim(self, nameof(y))
+animY.onComplete(function () {
 	var _nextPos = (self.y > room_height/2 ? room_height/2-200 : room_height/2+200)
 	animY.start([100, room_height-100], 1, curves[target_curve])
-}).start([100, room_height-100], 1, curves[target_curve])
+})
+animY.start([100, room_height-100], 1, curves[target_curve])
 
-// Пример анимации в один кейфрейм, можно ставить любую курву
+
+// Пример анимации в один кейфрейм, применятся значения выходящие за 0-1 диапазон курвы
+// Поддерживается fluent interface
+// !Можно раскомментить!
+
 //animX = new Anim(self, nameof(x))
 	//.start([room_width/2+200, room_width/2-200], 3, curves[target_curve])
 	//.onComplete(function () {
 		//animX.start([room_width/2+200, room_width/2-200], 3, curves[target_curve])
 	//})
 
+#endregion
 
 
-#region Struct AnimTs
+
+
+
+#region Struct Anim
 
 ball = {
 	x : 200,

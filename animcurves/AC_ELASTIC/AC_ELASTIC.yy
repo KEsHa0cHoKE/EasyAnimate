@@ -1,6 +1,6 @@
 {
   "$GMAnimCurve":"",
-  "%Name":"ANIM_CURVE_ELASTIC",
+  "%Name":"AC_ELASTIC",
   "channels":[
     {"$GMAnimCurveChannel":"","%Name":"channel","colour":4290799884,"name":"channel","points":[
         {"th0":-0.25,"th1":0.0,"tv0":0.0,"tv1":-7.287599E-08,"x":0.0,"y":-0.0029074887,},
@@ -12,7 +12,7 @@
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
   ],
   "function":2,
-  "name":"ANIM_CURVE_ELASTIC",
+  "name":"AC_ELASTIC",
   "parent":{
     "name":"Curves",
     "path":"folders/Extensions/Easy Animate/Curves.yy",

@@ -1,6 +1,6 @@
 {
   "$GMAnimCurve":"",
-  "%Name":"ANIM_CURVE_BOUNCE",
+  "%Name":"AC_BOUNCE",
   "channels":[
     {"$GMAnimCurveChannel":"","%Name":"channel","colour":4290799884,"name":"channel","points":[
         {"th0":-0.25,"th1":0.12944432,"tv0":0.0,"tv1":-0.0006312427,"x":0.0,"y":-0.0029074887,},
@@ -11,7 +11,7 @@
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
   ],
   "function":2,
-  "name":"ANIM_CURVE_BOUNCE",
+  "name":"AC_BOUNCE",
   "parent":{
     "name":"Curves",
     "path":"folders/Extensions/Easy Animate/Curves.yy",
