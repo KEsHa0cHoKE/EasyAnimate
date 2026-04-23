@@ -405,7 +405,7 @@ function Anim(target, vars) constructor
 
 
 
-///@desc Проверить, анимируется ли переменная у объекта
+///@desc Проверить, анимируется ли переменная у объекта/структуры
 ///@param {id|struct} obj Объект для проверки
 ///@param {string} varName Имя переменной
 ///@return {bool} true если переменная анимируется

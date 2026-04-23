@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"easy_animate_autotests",
   "parent":{
-    "name":"Easy Animate",
-    "path":"folders/Extensions/Easy Animate.yy",
+    "name":"Animation Handle",
+    "path":"Animation Handle.yyp",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

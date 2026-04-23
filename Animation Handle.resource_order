@@ -1,9 +1,6 @@
 {
   "FolderOrderSettings":[
-    {"name":"Extensions","order":4,"path":"folders/Extensions.yy",},
     {"name":"Easy Animate","order":1,"path":"folders/Extensions/Easy Animate.yy",},
-    {"name":"Objects","order":2,"path":"folders/Objects.yy",},
-    {"name":"Rooms","order":3,"path":"folders/Rooms.yy",},
   ],
   "ResourceOrderSettings":[
     {"name":"AC_BOUNCE","order":1,"path":"animcurves/AC_BOUNCE/AC_BOUNCE.yy",},
@@ -16,8 +13,13 @@
     {"name":"AC_LINEAR","order":8,"path":"animcurves/AC_LINEAR/AC_LINEAR.yy",},
     {"name":"AC_MID_SLOW","order":9,"path":"animcurves/AC_MID_SLOW/AC_MID_SLOW.yy",},
     {"name":"AC_QUART","order":10,"path":"animcurves/AC_QUART/AC_QUART.yy",},
-    {"name":"obj_autotests","order":1,"path":"objects/obj_autotests/obj_autotests.yy",},
-    {"name":"easy_animate_autotests","order":2,"path":"scripts/easy_animate_autotests/easy_animate_autotests.yy",},
+    {"name":"LICENSE","order":2,"path":"notes/LICENSE/LICENSE.yy",},
+    {"name":"README","order":3,"path":"notes/README/README.yy",},
+    {"name":"obj_autotests","order":3,"path":"objects/obj_autotests/obj_autotests.yy",},
+    {"name":"obj_test","order":4,"path":"objects/obj_test/obj_test.yy",},
+    {"name":"r_main","order":2,"path":"rooms/r_main/r_main.yy",},
+    {"name":"easy_animate_autotests","order":5,"path":"scripts/easy_animate_autotests/easy_animate_autotests.yy",},
     {"name":"easy_animate","order":1,"path":"scripts/easy_animate/easy_animate.yy",},
+    {"name":"spr_test","order":1,"path":"sprites/spr_test/spr_test.yy",},
   ],
 }

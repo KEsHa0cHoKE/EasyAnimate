@@ -1,0 +1,12 @@
+{
+  "$GMNotes":"v1",
+  "%Name":"README",
+  "name":"README",
+  "openedOnFirstLoad":true,
+  "parent":{
+    "name":"Extensions",
+    "path":"folders/Extensions.yy",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}

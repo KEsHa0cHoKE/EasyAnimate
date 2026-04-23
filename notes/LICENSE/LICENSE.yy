@@ -1,0 +1,11 @@
+{
+  "$GMNotes":"v1",
+  "%Name":"LICENSE",
+  "name":"LICENSE",
+  "parent":{
+    "name":"Extensions",
+    "path":"folders/Extensions.yy",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}

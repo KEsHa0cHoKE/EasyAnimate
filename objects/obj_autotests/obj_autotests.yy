@@ -8,8 +8,8 @@
   "name":"obj_autotests",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Animation Handle",
+    "path":"Animation Handle.yyp",
   },
   "parentObjectId":null,
   "persistent":false,

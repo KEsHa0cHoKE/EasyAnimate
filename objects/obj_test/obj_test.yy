@@ -11,8 +11,8 @@
   "name":"obj_test",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Animation Handle",
+    "path":"Animation Handle.yyp",
   },
   "parentObjectId":null,
   "persistent":false,

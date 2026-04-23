@@ -19,8 +19,8 @@
   ],
   "name":"r_main",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"Animation Handle",
+    "path":"Animation Handle.yyp",
   },
   "parentRoom":null,
   "physicsSettings":{
