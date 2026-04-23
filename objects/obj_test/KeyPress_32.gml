@@ -1,3 +1,3 @@
 ///@desc пауза
 
-animTs_move_y.togglePause()
+animY.togglePause()

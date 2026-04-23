@@ -39,7 +39,6 @@
     {"id":{"name":"ANIM_CURVE_QUART","path":"animcurves/ANIM_CURVE_QUART/ANIM_CURVE_QUART.yy",},},
     {"id":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},},
     {"id":{"name":"r_main","path":"rooms/r_main/r_main.yy",},},
-    {"id":{"name":"easy_animate_multipleKeyframes","path":"scripts/easy_animate_multipleKeyframes/easy_animate_multipleKeyframes.yy",},},
     {"id":{"name":"easy_animate","path":"scripts/easy_animate/easy_animate.yy",},},
     {"id":{"name":"spr_test","path":"sprites/spr_test/spr_test.yy",},},
   ],
